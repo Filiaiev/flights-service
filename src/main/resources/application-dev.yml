@@ -1,0 +1,10 @@
+spring:
+    jpa:
+        show-sql: true
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: "jdbc:mysql://localhost:3306/flights"
+        username: "root"
+        password: "SuSundron007@"
+server:
+    port: 8083
