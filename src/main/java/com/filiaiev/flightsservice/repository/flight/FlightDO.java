@@ -1,16 +1,17 @@
 package com.filiaiev.flightsservice.repository.flight;
 
+import com.filiaiev.flightsservice.repository.location.ChargeableZoneRouteDO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
-@Entity(name = "flights")
+@Entity(name = "flights_with_chargeable_routes")
 @Data
-public class FlightDO {
+public class FlightDO implements FlightView {
 
     @Id
     @GeneratedValue
@@ -22,10 +23,13 @@ public class FlightDO {
     @OneToOne
     private FlightRouteDO flightRoute;
 
-    // Say that date time is a local time
-    private ZonedDateTime originDepartureTime;
+    @OneToOne
+    private ChargeableZoneRouteDO chargeableZoneRoute;
 
-    private ZonedDateTime destinationArrivalTime;
+    // Say that date time is a local time
+    private Instant originDepartureTime;
+
+    private Instant destinationArrivalTime;
 
     private Double maxPayload;
 

@@ -3,10 +3,9 @@ package com.filiaiev.flightsservice.model.location;
 import lombok.Data;
 
 @Data
-public class Address {
+public class ChargeableZoneRoute {
 
     private Integer id;
-    private City city;
-    private String address;
-    private String postcode;
+    private Zone originZone;
+    private Zone destinationZone;
 }

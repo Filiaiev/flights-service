@@ -1,6 +1,6 @@
 package com.filiaiev.flightsservice.repository.flight;
 
-import com.filiaiev.flightsservice.repository.location.AddressDO;
+import com.filiaiev.flightsservice.repository.location.ZoneDO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,8 +15,16 @@ public class AirportDO {
     @GeneratedValue
     private Integer id;
 
+    private String address;
+
+    private String city;
+
+    private String country;
+
+    private String postcode;
+
     @OneToOne
-    private AddressDO address;
+    private ZoneDO zone;
 
     private String iataCode;
 }

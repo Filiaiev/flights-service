@@ -1,11 +1,19 @@
 package com.filiaiev.flightsservice.resource.flight;
 
-import com.filiaiev.flightsservice.resource.location.AddressRO;
 import lombok.Data;
 
 @Data
 public class AirportRO {
 
-    private AddressRO addressRO;
+    private Integer id;
+
+    private String address;
+
+    private String city;
+
+    private String country;
+
+    private String postcode;
+
     private String iataCode;
 }
