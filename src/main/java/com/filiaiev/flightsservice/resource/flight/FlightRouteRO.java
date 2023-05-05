@@ -7,4 +7,5 @@ public class FlightRouteRO {
 
     private AirportRO originAirport;
     private AirportRO destinationAirport;
+    private Integer chargeableZoneRouteId;
 }

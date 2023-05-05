@@ -1,9 +1,7 @@
 package com.filiaiev.flightsservice.repository.flight;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import com.filiaiev.flightsservice.repository.location.ChargeableZoneRouteDO;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity(name = "flight_routes")
@@ -11,7 +9,7 @@ import lombok.Data;
 public class FlightRouteDO {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne
@@ -19,4 +17,7 @@ public class FlightRouteDO {
 
     @OneToOne
     private AirportDO destinationAirport;
+
+    @OneToOne
+    private ChargeableZoneRouteDO chargeableZoneRoute;
 }

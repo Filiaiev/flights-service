@@ -3,6 +3,8 @@ package com.filiaiev.flightsservice.service;
 import com.filiaiev.flightsservice.model.flight.Flight;
 import com.filiaiev.flightsservice.repository.FlightRepository;
 import com.filiaiev.flightsservice.repository.flight.FlightDO;
+import com.filiaiev.flightsservice.repository.flight.search.FlightSearch;
+import com.filiaiev.flightsservice.repository.specification.FlightSpecification;
 import com.filiaiev.flightsservice.service.mapper.FlightServiceMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 public class FlightService {
 
     private final FlightRepository flightRepository;
+    private final FlightSpecification flightSpecification;
     private final FlightServiceMapper flightMapper;
 
     public Flight getFlight(Integer id) {
@@ -40,4 +43,9 @@ public class FlightService {
         );
     }
 
+    public List<Flight> getFlights(FlightSearch flightSearch) {
+        return flightMapper.mapFlightDOsToFlights(
+                flightRepository.findAll(flightSpecification.hasIATARoute(flightSearch.getIataSearch()))
+        );
+    }
 }

@@ -1,6 +1,5 @@
 package com.filiaiev.flightsservice.model.flight;
 
-import com.filiaiev.flightsservice.model.location.ChargeableZoneRoute;
 import lombok.Data;
 
 import java.time.Instant;
@@ -10,7 +9,6 @@ public class Flight {
 
     private Integer id;
     private Aircraft aircraft;
-    private ChargeableZoneRoute chargeableZoneRoute;
     private FlightRoute flightRoute;
     private Instant originDepartureTime;
     private Instant destinationArrivalTime;

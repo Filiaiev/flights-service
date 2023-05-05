@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface FlightResourceMapper {
 
-    @Mapping(target = "chargeableZoneRouteId", source = "chargeableZoneRoute.id")
+    @Mapping(target = "flightRoute.chargeableZoneRouteId", source = "flightRoute.chargeableZoneRoute.id")
     FlightRO mapFlightToFlightRO(Flight flight);
 
     List<FlightRO> mapFlightsToFlightROs(List<Flight> flights);

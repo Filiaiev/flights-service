@@ -11,7 +11,6 @@ public class FlightRO {
 
     private Integer id;
     private AircraftRO aircraft;
-    private Integer chargeableZoneRouteId;
     private FlightRouteRO flightRoute;
     private Integer zoneRouteId;
     private Instant originDepartureTime;

@@ -1,5 +1,6 @@
 package com.filiaiev.flightsservice.resource;
 
+import com.filiaiev.flightsservice.repository.flight.search.FlightSearch;
 import com.filiaiev.flightsservice.resource.flight.CreateFlightRO;
 import com.filiaiev.flightsservice.resource.flight.FlightRO;
 import com.filiaiev.flightsservice.resource.flight.UpdateTrackUrlRO;
@@ -27,10 +28,9 @@ public class FlightController {
     }
 
     @GetMapping
-    public List<FlightRO> getFlights(@RequestParam("origin") String originIATA,
-                                     @RequestParam("destination") String destinationIATA) {
+    public List<FlightRO> getFlights(@RequestBody FlightSearch flightSearch) {
         return flightMapper.mapFlightsToFlightROs(
-                flightService.getFlights(originIATA, destinationIATA)
+                flightService.getFlights(flightSearch)
         );
     }
 
