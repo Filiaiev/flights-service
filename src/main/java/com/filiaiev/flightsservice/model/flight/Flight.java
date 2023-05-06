@@ -12,6 +12,7 @@ public class Flight {
     private FlightRoute flightRoute;
     private Instant originDepartureTime;
     private Instant destinationArrivalTime;
+    private Instant bookableUntil;
     private Double maxPayload;
     private Double maxVolume;
     private String trackUrl;

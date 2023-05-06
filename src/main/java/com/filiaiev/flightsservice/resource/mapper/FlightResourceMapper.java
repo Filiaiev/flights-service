@@ -1,8 +1,10 @@
 package com.filiaiev.flightsservice.resource.mapper;
 
 import com.filiaiev.flightsservice.model.flight.Flight;
+import com.filiaiev.flightsservice.repository.flight.search.FlightSearch;
 import com.filiaiev.flightsservice.resource.flight.CreateFlightRO;
 import com.filiaiev.flightsservice.resource.flight.FlightRO;
+import com.filiaiev.flightsservice.resource.flight.search.FlightSearchRO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -19,4 +21,6 @@ public interface FlightResourceMapper {
     @Mapping(target = "aircraft.id", source = "aircraftId")
     @Mapping(target = "flightRoute.id", source = "flightRouteId")
     Flight mapCreateFlightROToFlight(CreateFlightRO createFlightRO);
+
+    FlightSearch mapFlightSearchROToFlightSearch(FlightSearchRO flightSearchRO);
 }

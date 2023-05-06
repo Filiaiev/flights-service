@@ -11,6 +11,7 @@ public class CreateFlightRO {
     private Integer flightRouteId;
     private Instant originDepartureTime;
     private Instant destinationArrivalTime;
+    private Instant bookableUntil;
     private Double maxPayload;
     private Double maxVolume;
 }

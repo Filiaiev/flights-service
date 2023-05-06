@@ -8,6 +8,7 @@ import com.filiaiev.flightsservice.repository.specification.FlightSpecification;
 import com.filiaiev.flightsservice.service.mapper.FlightServiceMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,14 +28,15 @@ public class FlightService {
         return flightMapper.mapFlightDOToFlight(flightDO);
     }
 
-    public List<Flight> getFlights(String originIATA, String destinationIATA) {
-        return flightMapper.mapFlightDOsToFlights(
-                flightRepository.findAllByIATARoute(originIATA, destinationIATA)
+    public List<Flight> getFlights(FlightSearch flightSearch) {
+        Specification<FlightDO> searchSpecification = Specification.allOf(
+                flightSpecification.hasAirportRoute(flightSearch.getRoute()),
+                flightSpecification.hasDepartureDate(flightSearch.getDepartureDate())
         );
-    }
 
-    public void updateTrackUrl(Integer flightId, String trackUrl) {
-        flightRepository.updateTrackUrl(flightId, trackUrl);
+        return flightMapper.mapFlightDOsToFlights(
+                flightRepository.findAll(searchSpecification)
+        );
     }
 
     public void createFlight(Flight createFlight) {
@@ -43,9 +45,7 @@ public class FlightService {
         );
     }
 
-    public List<Flight> getFlights(FlightSearch flightSearch) {
-        return flightMapper.mapFlightDOsToFlights(
-                flightRepository.findAll(flightSpecification.hasIATARoute(flightSearch.getIataSearch()))
-        );
+    public void updateTrackUrl(Integer flightId, String trackUrl) {
+        flightRepository.updateTrackUrl(flightId, trackUrl);
     }
 }

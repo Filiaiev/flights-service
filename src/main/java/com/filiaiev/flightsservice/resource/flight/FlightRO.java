@@ -15,6 +15,7 @@ public class FlightRO {
     private Integer zoneRouteId;
     private Instant originDepartureTime;
     private Instant destinationArrivalTime;
+    private Instant bookableUntil;
     private Double maxPayload;
     private Double maxVolume;
     private String trackUrl;

@@ -24,6 +24,8 @@ public class FlightDO {
 
     private Instant destinationArrivalTime;
 
+    private Instant bookableUntil;
+
     private Double maxPayload;
 
     private Double maxVolume;

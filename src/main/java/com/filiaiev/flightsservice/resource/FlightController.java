@@ -4,8 +4,10 @@ import com.filiaiev.flightsservice.repository.flight.search.FlightSearch;
 import com.filiaiev.flightsservice.resource.flight.CreateFlightRO;
 import com.filiaiev.flightsservice.resource.flight.FlightRO;
 import com.filiaiev.flightsservice.resource.flight.UpdateTrackUrlRO;
+import com.filiaiev.flightsservice.resource.flight.search.FlightSearchRO;
 import com.filiaiev.flightsservice.resource.mapper.FlightResourceMapper;
 import com.filiaiev.flightsservice.service.FlightService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +30,9 @@ public class FlightController {
     }
 
     @GetMapping
-    public List<FlightRO> getFlights(@RequestBody FlightSearch flightSearch) {
+    public List<FlightRO> getFlights(@Valid @RequestBody FlightSearchRO flightSearchRO) {
+        FlightSearch flightSearch = flightMapper.mapFlightSearchROToFlightSearch(flightSearchRO);
+
         return flightMapper.mapFlightsToFlightROs(
                 flightService.getFlights(flightSearch)
         );
