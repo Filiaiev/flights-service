@@ -1,5 +1,6 @@
 package com.filiaiev.flightsservice.service;
 
+import com.filiaiev.flightsservice.exception.FlightException;
 import com.filiaiev.flightsservice.model.flight.Flight;
 import com.filiaiev.flightsservice.repository.FlightRepository;
 import com.filiaiev.flightsservice.repository.flight.FlightDO;
@@ -9,6 +10,7 @@ import com.filiaiev.flightsservice.service.mapper.FlightServiceMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class FlightService {
 
     public Flight getFlight(Integer id) {
         FlightDO flightDO = flightRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new FlightException("Flight not found", HttpStatus.NOT_FOUND));
 
         return flightMapper.mapFlightDOToFlight(flightDO);
     }

@@ -11,9 +11,6 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<FlightDO, Integer>, JpaSpecificationExecutor<FlightDO> {
 
-    @Query("SELECT f FROM flights f WHERE f.flightRoute.originAirport.iataCode = ?1 AND f.flightRoute.destinationAirport.iataCode = ?2")
-    List<FlightDO> findAllByIATARoute(String originIATA, String destinationIATA);
-
     default FlightDO updateTrackUrl(Integer flightId, String trackUrl) {
         FlightDO flight = getReferenceById(flightId);
         flight.setTrackUrl(trackUrl);
